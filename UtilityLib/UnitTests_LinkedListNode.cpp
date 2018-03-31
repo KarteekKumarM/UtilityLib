@@ -4,6 +4,8 @@
 
 void UnitTests_LinkedListNode::RunAddTests()
 {
+	printf("------ Linked List testing --------\n");
+
 	LinkedListNode<int> *realFirst = new LinkedListNode<int>(2);
 
 	LinkedListNode<int> *first = new LinkedListNode<int>(4);
