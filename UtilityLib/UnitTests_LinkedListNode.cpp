@@ -4,14 +4,14 @@
 
 void UnitTests_LinkedListNode::RunAddTests()
 {
-	LinkedListNode *realFirst = new LinkedListNode(2);
+	LinkedListNode<int> *realFirst = new LinkedListNode<int>(2);
 
-	LinkedListNode *first = new LinkedListNode(4);
+	LinkedListNode<int> *first = new LinkedListNode<int>(4);
 	first->addAtBeginning(realFirst);
-	first->addAtEnd(new LinkedListNode(8));
-	first->addAtEnd(new LinkedListNode(32));
-	first->addAtEnd(new LinkedListNode(64));
-	first->addAtIndex(new LinkedListNode(16), 2);
+	first->addAtEnd(new LinkedListNode<int>(8));
+	first->addAtEnd(new LinkedListNode<int>(32));
+	first->addAtEnd(new LinkedListNode<int>(64));
+	first->addAtIndex(new LinkedListNode<int>(16), 2);
 
 	realFirst->print();
 	this->m_result = UT_RESULT_SUCCESS;

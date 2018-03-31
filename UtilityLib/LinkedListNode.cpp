@@ -3,7 +3,8 @@
 
 #include "Globals.h"
 
-void LinkedListNode::addAtIndex(LinkedListNode *llNodeNew, unsigned int index)
+template <class T>
+void LinkedListNode<T>::addAtIndex(LinkedListNode<T> *llNodeNew, unsigned int index)
 {
 	int itCounter = 0;
 
@@ -36,19 +37,22 @@ void LinkedListNode::addAtIndex(LinkedListNode *llNodeNew, unsigned int index)
 	}
 }
 
-void LinkedListNode::addAtBeginning(LinkedListNode * llNodeNew)
+template <class T>
+void LinkedListNode<T>::addAtBeginning(LinkedListNode<T> * llNodeNew)
 {
 	this->addAtIndex(llNodeNew, 0);
 }
 
-void LinkedListNode::addAtEnd(LinkedListNode * llNodeNew)
+template <class T>
+void LinkedListNode<T>::addAtEnd(LinkedListNode<T> * llNodeNew)
 {
 	this->addAtIndex(llNodeNew, MAX_UINT);
 }
 
-LinkedListNode* LinkedListNode::getLastNode()
+template <class T>
+LinkedListNode<T>* LinkedListNode<T>::getLastNode()
 {
-	LinkedListNode *nodeIt = this;
+	LinkedListNode<T> *nodeIt = this;
 	
 	while (nodeIt->m_next != NULL)
 		nodeIt = nodeIt->m_next;
@@ -56,9 +60,10 @@ LinkedListNode* LinkedListNode::getLastNode()
 	return nodeIt;
 }
 
-unsigned int LinkedListNode::getSize()
+template <class T>
+unsigned int LinkedListNode<T>::getSize()
 {
-	LinkedListNode *nodeIt = this;
+	LinkedListNode<T> *nodeIt = this;
 
 	unsigned int count = 0;
 	while (nodeIt != NULL)
@@ -69,9 +74,10 @@ unsigned int LinkedListNode::getSize()
 	return count;
 }
 
-void LinkedListNode::print()
+template <class T>
+void LinkedListNode<T>::print()
 {
-	LinkedListNode *nodeIt = this;
+	LinkedListNode<T> *nodeIt = this;
 
 	printf("{ ");
 	while (nodeIt != NULL)
@@ -82,12 +88,14 @@ void LinkedListNode::print()
 	printf("} \n");
 }
 
-LinkedListNode::LinkedListNode( int pData )
+template <class T>
+LinkedListNode<T>::LinkedListNode( T data )
 {
-	this->m_data = pData;
+	this->m_data = data;
 }
 
 
-LinkedListNode::~LinkedListNode()
+template <class T>
+LinkedListNode<T>::~LinkedListNode()
 {
 }
