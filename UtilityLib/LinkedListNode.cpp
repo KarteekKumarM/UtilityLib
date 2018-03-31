@@ -48,10 +48,9 @@ void LinkedListNode::addAtEnd(LinkedListNode * llNodeNew)
 
 LinkedListNode* LinkedListNode::getLastNode()
 {
-	LinkedListNode *nodeFirst = this;
 	LinkedListNode *nodeIt = this;
 	
-	while (nodeIt->m_next != NULL && nodeIt->m_next != nodeFirst)
+	while (nodeIt->m_next != NULL)
 		nodeIt = nodeIt->m_next;
 
 	return nodeIt;
@@ -59,11 +58,10 @@ LinkedListNode* LinkedListNode::getLastNode()
 
 unsigned int LinkedListNode::getSize()
 {
-	LinkedListNode *nodeFirst = this;
 	LinkedListNode *nodeIt = this;
 
 	unsigned int count = 0;
-	while (nodeIt != NULL && nodeIt != nodeFirst)
+	while (nodeIt != NULL)
 	{
 		count++;
 		nodeIt = nodeIt->m_next;
@@ -73,11 +71,10 @@ unsigned int LinkedListNode::getSize()
 
 void LinkedListNode::print()
 {
-	LinkedListNode *nodeFirst = this;
 	LinkedListNode *nodeIt = this;
 
 	printf("{ ");
-	while (nodeIt != NULL && nodeIt != nodeFirst)
+	while (nodeIt != NULL)
 	{
 		printf("%d ", nodeIt->m_data);
 		nodeIt = nodeIt->m_next;
