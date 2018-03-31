@@ -17,6 +17,3 @@ public:
 	Stack<T>();
 	~Stack<T>();
 };
-
-// If you, at the bottom of the implementation cpp file, do explicit instantiation of all the types the template will be used with, the linker will be able to find them as usual.
-template class Stack<int>;
