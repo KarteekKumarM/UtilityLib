@@ -161,9 +161,7 @@
     <ClInclude Include="UnitTests_Stack.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LinkedListNode.cpp" />
     <ClCompile Include="NTreeNode.cpp" />
-    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
