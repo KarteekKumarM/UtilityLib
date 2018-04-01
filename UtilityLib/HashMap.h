@@ -22,6 +22,7 @@ private:
 public:
 	void insert(K key, V value);
 	V search(K key);
+	V remove(K key);
 
 	HashMap();
 	~HashMap();
@@ -51,7 +52,7 @@ inline void HashMap<K, V>::insert(K key, V value)
 	else
 	{
 		LinkedListNode<Entry*> *llFirst = storage[hashIndex];
-		llFirst->addAtBeginning(llNodeEntry);
+		llFirst->addAtEnd(llNodeEntry);
 	}
 }
 
@@ -71,6 +72,39 @@ inline V HashMap<K, V>::search(K key)
 			return nodeIt->m_data->value;
 
 		first = first->m_next;
+	}
+
+	return NULL;
+}
+
+template<typename K, typename V>
+inline V HashMap<K, V>::remove(K key)
+{
+	unsigned int hashIndex = hash(key);
+	if (storage[hashIndex] == NULL)
+		return NULL;
+
+	LinkedListNode<Entry*> *nodeIt = storage[hashIndex];
+	unsigned int nodeItIndex = 0;
+	while (nodeIt != NULL)
+	{
+		LinkedListNode<Entry*> *temp = nodeIt;
+
+		if (temp->m_data->key == key)
+		{
+			V value = temp->m_data->value;
+
+			LinkedListNode<Entry*> *first = storage[hashIndex];
+			if (temp != first)
+				first->removeAtindex(nodeItIndex);
+
+			delete temp;
+
+			return value;
+		}
+
+		nodeIt = nodeIt->m_next;
+		nodeItIndex++;
 	}
 
 	return NULL;

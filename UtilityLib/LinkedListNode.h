@@ -16,6 +16,7 @@ public:
 	LinkedListNode<T>* getLastNode();
 	unsigned int getSize();
 	void print();
+	void removeAtindex(unsigned int index);
 
 	LinkedListNode<T>( T data );
 	~LinkedListNode<T>();
@@ -104,6 +105,38 @@ inline void LinkedListNode<T>::print()
 		nodeIt = nodeIt->m_next;
 	}
 	printf("} \n");
+}
+
+template<class T>
+inline void LinkedListNode<T>::removeAtindex(unsigned int index)
+{
+	int itCounter = 0;
+
+	LinkedListNode *llNodePrev = NULL;
+	LinkedListNode *llNodeIt = this;
+	while (itCounter != index && llNodeIt)
+	{
+		llNodePrev = llNodeIt;
+		llNodeIt = llNodeIt->m_next;
+		itCounter++;
+	}
+
+	if (llNodePrev == NULL)
+	{
+		// start of the list
+		// can't remove self
+		// assert
+	}
+	else if (llNodeIt == NULL)
+	{
+		// end of the list
+		llNodePrev->m_next = NULL;
+	}
+	else
+	{
+		// middle of this list
+		llNodePrev->m_next = llNodeIt->m_next;
+	}
 }
 
 template <class T>
