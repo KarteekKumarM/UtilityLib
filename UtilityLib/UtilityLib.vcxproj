@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="HashMap.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="LinkedListNode.h" />
     <ClInclude Include="NTreeNode.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="UnitTests_NTreeNode.h" />
     <ClInclude Include="UnitTests_Queue.h" />
     <ClInclude Include="UnitTests_Stack.h" />
+    <ClInclude Include="UnitTetsts_HashMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -173,6 +175,7 @@
     <ClCompile Include="UnitTests_NTreeNode.cpp" />
     <ClCompile Include="UnitTests_Queue.cpp" />
     <ClCompile Include="UnitTests_Stack.cpp" />
+    <ClCompile Include="UnitTetsts_HashMap.cpp" />
     <ClCompile Include="UtilityLib.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
