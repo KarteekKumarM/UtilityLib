@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Iterator.h" />
     <ClInclude Include="LinkedListNode.h" />
     <ClInclude Include="NTreeNode.h" />
     <ClInclude Include="Queue.h" />

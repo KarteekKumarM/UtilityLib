@@ -3,6 +3,7 @@
 #include "LinkedListNode.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "Iterator.h"
 
 template <class T>
 class NTreeNode
@@ -16,27 +17,31 @@ public:
 	NTreeNode<T>* depthFirstSearch(T data);
 	NTreeNode<T>* breadthFirstSearch(T data);
 
-	NTreeNode<T>( T data );
+	NTreeNode<T>(T data);
 	~NTreeNode<T>();
 
-	class DfsIterator
+	class DfsIterator : public Iterator<NTreeNode*>
 	{
 	private:
-		Stack<NTreeNode*> *stackIt;
+		Stack<NTreeNode*> *m_stackIt;
+		NTreeNode<T> *m_current;
 	public:
-		NTreeNode<T> *current;
-
-		DfsIterator* next()
+		NTreeNode<T>* current()
 		{
-			if (stackIt->isEmpty())
+			return m_current;
+		}
+
+		Iterator<NTreeNode*>* next()
+		{
+			if (m_stackIt->isEmpty())
 				return NULL;
 
-			current = stackIt->pop();
+			m_current = m_stackIt->pop();
 
-			LinkedListNode<NTreeNode*> *childIt = current->m_children;
+			LinkedListNode<NTreeNode*> *childIt = m_current->m_children;
 			while (childIt != NULL)
 			{
-				stackIt->push(childIt->m_data);
+				m_stackIt->push(childIt->m_data);
 				childIt = childIt->m_next;
 			}
 
@@ -45,8 +50,10 @@ public:
 
 		DfsIterator(NTreeNode *root)
 		{
-			stackIt = new Stack<NTreeNode*>();
-			stackIt->push(root);
+			m_stackIt = new Stack<NTreeNode*>();
+			m_stackIt->push(root);
+
+			next();
 		}
 
 		~DfsIterator()
@@ -55,24 +62,28 @@ public:
 		}
 	};
 
-	class BfsIterator
+	class BfsIterator : public Iterator<NTreeNode*>
 	{
 	private:
-		Queue<NTreeNode*> *queueIt;
+		Queue<NTreeNode*> *m_queueIt;
+		NTreeNode<T> *m_current;
 	public:
-		NTreeNode<T> *current;
-
-		BfsIterator* next()
+		NTreeNode<T>* current()
 		{
-			if (queueIt->isEmpty())
+			return m_current;
+		}
+
+		Iterator<NTreeNode*>* next()
+		{
+			if (m_queueIt->isEmpty())
 				return NULL;
 
-			current = queueIt->pop();
+			m_current = m_queueIt->pop();
 
-			LinkedListNode<NTreeNode*> *childIt = current->m_children;
+			LinkedListNode<NTreeNode*> *childIt = m_current->m_children;
 			while (childIt != NULL)
 			{
-				queueIt->push(childIt->m_data);
+				m_queueIt->push(childIt->m_data);
 				childIt = childIt->m_next;
 			}
 
@@ -81,13 +92,15 @@ public:
 
 		BfsIterator(NTreeNode *root)
 		{
-			queueIt = new Queue<NTreeNode*>();
-			queueIt->push(root);
+			m_queueIt = new Queue<NTreeNode*>();
+			m_queueIt->push(root);
+
+			next();
 		}
 
 		~BfsIterator()
 		{
-			delete queueIt;
+			delete m_queueIt;
 		}
 	};
 };
@@ -108,12 +121,11 @@ inline void NTreeNode<T>::addChild(NTreeNode *newNode)
 template <class T>
 NTreeNode<T>* NTreeNode<T>::depthFirstSearch(T data)
 {
-	DfsIterator *iterator = new DfsIterator(this);
-	iterator = iterator->next();
+	Iterator<NTreeNode*> *iterator = new DfsIterator(this);
 	while (iterator != NULL)
 	{
-		if (iterator->current->m_data == data)
-			return iterator->current;
+		if (iterator->current()->m_data == data)
+			return iterator->current();
 
 		iterator = iterator->next();
 	}
@@ -124,12 +136,11 @@ NTreeNode<T>* NTreeNode<T>::depthFirstSearch(T data)
 template <class T>
 NTreeNode<T>* NTreeNode<T>::breadthFirstSearch(T data)
 {
-	BfsIterator *iterator = new BfsIterator(this);
-	iterator = iterator->next();
+	Iterator<NTreeNode*> *iterator = new BfsIterator(this);
 	while (iterator != NULL)
 	{
-		if (iterator->current->m_data == data)
-			return iterator->current;
+		if (iterator->current()->m_data == data)
+			return iterator->current();
 
 		iterator = iterator->next();
 	}
