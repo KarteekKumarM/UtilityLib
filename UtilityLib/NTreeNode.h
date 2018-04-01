@@ -13,11 +13,47 @@ public:
 
 	void addChild(NTreeNode *newNode);
 
-	NTreeNode* depthFirstSearch(T data);
+	NTreeNode<T>* depthFirstSearch(T data);
 	NTreeNode<T>* breadthFirstSearch(T data);
 
 	NTreeNode<T>( T data );
 	~NTreeNode<T>();
+
+	class DfsIterator
+	{
+	private:
+		Stack<NTreeNode*> *stackIt;
+	public:
+		NTreeNode<T> *current;
+
+		DfsIterator* next()
+		{
+			if (stackIt->isEmpty())
+				return NULL;
+
+			current = stackIt->pop();
+
+			LinkedListNode<NTreeNode*> *childIt = current->m_children;
+			while (childIt != NULL)
+			{
+				stackIt->push(childIt->m_data);
+				childIt = childIt->m_next;
+			}
+
+			return this;
+		}
+
+		DfsIterator(NTreeNode *root)
+		{
+			stackIt = new Stack<NTreeNode*>();
+			stackIt->push(root);
+		}
+
+		~DfsIterator()
+		{
+			delete stackIt;
+		}
+	};
 };
 
 template <class T>
@@ -36,22 +72,14 @@ inline void NTreeNode<T>::addChild(NTreeNode *newNode)
 template <class T>
 NTreeNode<T>* NTreeNode<T>::depthFirstSearch(T data)
 {
-	Stack<NTreeNode*> *stackIt = new Stack<NTreeNode*>();
-	stackIt->push(this);
-
-	while (!stackIt->isEmpty())
+	DfsIterator *iterator = new DfsIterator(this);
+	iterator = iterator->next();
+	while (iterator != NULL)
 	{
-		NTreeNode *nodeIt = stackIt->pop();
+		if (iterator->current->m_data == data)
+			return iterator->current;
 
-		if (nodeIt->m_data == data)
-			return nodeIt;
-
-		LinkedListNode<NTreeNode*> *childIt = nodeIt->m_children;
-		while (childIt != NULL)
-		{
-			stackIt->push(childIt->m_data);
-			childIt = childIt->m_next;
-		}
+		iterator = iterator->next();
 	}
 
 	return NULL;
