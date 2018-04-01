@@ -1,4 +1,8 @@
 #include "stdafx.h"
+
+#include <stdlib.h>
+#include <string.h>
+
 #include "UnitTests_NTreeNode.h"
 #include "NTreeNode.h"
 
@@ -32,6 +36,17 @@ void UnitTests_NTreeNode::RunBasicTests()
 		m_result = UT_RESULT_FAIL;
 
 	if (root->breadthFirstSearch(112) != NULL)
+		m_result = UT_RESULT_FAIL;
+
+	char serializeBuffer[512];
+	// expected : "20#8,22##4,12#10,14####"
+	root->serialize(serializeBuffer);
+	NTreeNode<int> *readRoot = root->deserialize(serializeBuffer);
+
+	char reserializeBuffer[512];
+	readRoot->serialize(reserializeBuffer);
+
+	if (strcmp(serializeBuffer, reserializeBuffer))
 		m_result = UT_RESULT_FAIL;
 }
 
