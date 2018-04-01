@@ -54,6 +54,42 @@ public:
 			delete stackIt;
 		}
 	};
+
+	class BfsIterator
+	{
+	private:
+		Queue<NTreeNode*> *queueIt;
+	public:
+		NTreeNode<T> *current;
+
+		BfsIterator* next()
+		{
+			if (queueIt->isEmpty())
+				return NULL;
+
+			current = queueIt->pop();
+
+			LinkedListNode<NTreeNode*> *childIt = current->m_children;
+			while (childIt != NULL)
+			{
+				queueIt->push(childIt->m_data);
+				childIt = childIt->m_next;
+			}
+
+			return this;
+		}
+
+		BfsIterator(NTreeNode *root)
+		{
+			queueIt = new Queue<NTreeNode*>();
+			queueIt->push(root);
+		}
+
+		~BfsIterator()
+		{
+			delete queueIt;
+		}
+	};
 };
 
 template <class T>
@@ -88,22 +124,14 @@ NTreeNode<T>* NTreeNode<T>::depthFirstSearch(T data)
 template <class T>
 NTreeNode<T>* NTreeNode<T>::breadthFirstSearch(T data)
 {
-	Queue<NTreeNode*> *queue = new Queue<NTreeNode*>();
-	queue->push(this);
-
-	while (!queue->isEmpty())
+	BfsIterator *iterator = new BfsIterator(this);
+	iterator = iterator->next();
+	while (iterator != NULL)
 	{
-		NTreeNode *nodeIt = queue->pop();
+		if (iterator->current->m_data == data)
+			return iterator->current;
 
-		if (nodeIt->m_data == data)
-			return nodeIt;
-
-		LinkedListNode<NTreeNode*> *childIt = nodeIt->m_children;
-		while (childIt != NULL)
-		{
-			queue->push(childIt->m_data);
-			childIt = childIt->m_next;
-		}
+		iterator = iterator->next();
 	}
 
 	return NULL;
