@@ -20,9 +20,18 @@ void UnitTests_NTreeNode::RunBasicTests()
 	twelve->addChild(new NTreeNode<int>(10));
 	twelve->addChild(new NTreeNode<int>(14));
 
-	if (root->depthFirstSearch(12) == twelve && root->depthFirstSearch(112) == NULL)
-		m_result = UT_RESULT_SUCCESS;
-	else
+	m_result = UT_RESULT_SUCCESS;
+
+	if (root->depthFirstSearch(12) != twelve)
+		m_result = UT_RESULT_FAIL;
+
+	if (root->depthFirstSearch(112) != NULL)
+		m_result = UT_RESULT_FAIL;
+
+	if (root->breadthFirstSearch(12) != twelve)
+		m_result = UT_RESULT_FAIL;
+
+	if (root->breadthFirstSearch(112) != NULL)
 		m_result = UT_RESULT_FAIL;
 }
 
