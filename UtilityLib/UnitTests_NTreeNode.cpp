@@ -41,7 +41,8 @@ void UnitTests_NTreeNode::RunBasicTests()
 	char serializeBuffer[512];
 	// expected : "20#8,22##4,12#10,14####"
 	root->serialize(serializeBuffer);
-	NTreeNode<int> *readRoot = root->deserialize(serializeBuffer);
+
+	NTreeNode<int> *readRoot = NTreeNode<int>::deserialize(serializeBuffer);
 
 	char reserializeBuffer[512];
 	readRoot->serialize(reserializeBuffer);

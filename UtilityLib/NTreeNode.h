@@ -23,7 +23,7 @@ public:
 	NTreeNode<T>* breadthFirstSearch(T data);
 
 	void serialize(char outSerializedString[SERIALIZE_BUFFER_SIZE]);
-	NTreeNode<T>* deserialize(const char inSerializedString[SERIALIZE_BUFFER_SIZE]);
+	static NTreeNode<T>* deserialize(const char inSerializedString[SERIALIZE_BUFFER_SIZE]);
 
 	NTreeNode<T>(T data);
 	~NTreeNode<T>();
