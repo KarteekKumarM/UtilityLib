@@ -36,6 +36,8 @@ void UnitTests_Queue::RunBasicTests()
 	queue->print();
 
 	this->m_result = UT_RESULT_SUCCESS;
+
+	delete queue;
 }
 
 void UnitTests_Queue::run()

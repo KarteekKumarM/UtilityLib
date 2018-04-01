@@ -16,6 +16,14 @@ void UnitTests_LinkedListNode::RunAddTests()
 	first->addAtIndex(new LinkedListNode<int>(16), 2);
 
 	realFirst->print();
+
+	while (realFirst != NULL)
+	{
+		LinkedListNode<int> *nodeIt = realFirst;
+		realFirst = realFirst->m_next;
+		delete nodeIt;
+	}
+
 	this->m_result = UT_RESULT_SUCCESS;
 }
 

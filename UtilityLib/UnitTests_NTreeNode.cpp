@@ -49,6 +49,16 @@ void UnitTests_NTreeNode::RunBasicTests()
 
 	if (strcmp(serializeBuffer, reserializeBuffer))
 		m_result = UT_RESULT_FAIL;
+
+	// clean up
+	Iterator<NTreeNode<int>*> *iterator = new NTreeNode<int>::BfsIterator(root);
+	while (iterator != NULL)
+	{
+		NTreeNode<int> *nodeIt = iterator->current();
+		iterator = iterator->next();
+		delete nodeIt;
+	}
+
 }
 
 void UnitTests_NTreeNode::run()

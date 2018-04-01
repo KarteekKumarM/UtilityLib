@@ -34,6 +34,8 @@ void UnitTests_Stack::RunBasicTests()
 	stack->print();
 
 	this->m_result = UT_RESULT_SUCCESS;
+
+	delete stack;
 }
 
 void UnitTests_Stack::run()

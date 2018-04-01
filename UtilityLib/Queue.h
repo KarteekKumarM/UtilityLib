@@ -72,4 +72,10 @@ inline Queue<T>::Queue()
 template<class T>
 inline Queue<T>::~Queue()
 {
+	while (m_first != NULL)
+	{
+		LinkedListNode<T> *nodeIt = m_first;
+		m_first = m_first->m_next;
+		delete nodeIt;
+	}
 }

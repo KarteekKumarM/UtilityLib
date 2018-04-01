@@ -88,4 +88,10 @@ inline Stack<T>::Stack()
 template <class T>
 inline Stack<T>::~Stack()
 {
+	while (m_top != NULL)
+	{
+		LinkedListNode<T> *nodeIt = m_top;
+		m_top = m_top->m_next;
+		delete nodeIt;
+	}
 }

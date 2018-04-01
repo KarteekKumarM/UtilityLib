@@ -260,4 +260,10 @@ inline NTreeNode<T>::NTreeNode(T data)
 template <class T>
 inline NTreeNode<T>::~NTreeNode()
 {
+	while (m_children != NULL)
+	{
+		LinkedListNode<NTreeNode<T>*> *nodeIt = m_children;
+		m_children = m_children->m_next;
+		delete nodeIt;
+	}
 }
