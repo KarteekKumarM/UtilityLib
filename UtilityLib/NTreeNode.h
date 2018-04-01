@@ -1,18 +1,68 @@
 #pragma once
 
 #include "LinkedListNode.h"
+#include "Stack.h"
 
+template <class T>
 class NTreeNode
 {
 public:
-	int m_data;
+	T m_data;
 	LinkedListNode<NTreeNode*> *m_children;
 
 	void addChild(NTreeNode *newNode);
 
-	NTreeNode* depthFirstSearch(int data);
+	NTreeNode* depthFirstSearch(T data);
 
-	NTreeNode( int data );
-	~NTreeNode();
+	NTreeNode<T>( T data );
+	~NTreeNode<T>();
 };
 
+template <class T>
+inline void NTreeNode<T>::addChild(NTreeNode *newNode)
+{
+	LinkedListNode<NTreeNode*> *childNode = new LinkedListNode<NTreeNode*>(newNode);
+	if (m_children == NULL)
+	{
+		m_children = childNode;
+		return;
+	}
+
+	m_children->addAtEnd(childNode);
+}
+
+template <class T>
+NTreeNode<T>* NTreeNode<T>::depthFirstSearch(T data)
+{
+	Stack<NTreeNode*> *stackIt = new Stack<NTreeNode*>();
+	stackIt->push(this);
+
+	while (!stackIt->isEmpty())
+	{
+		NTreeNode *nodeIt = stackIt->pop();
+
+		if (nodeIt->m_data == data)
+			return nodeIt;
+
+		LinkedListNode<NTreeNode*> *childIt = nodeIt->m_children;
+		while (childIt != NULL)
+		{
+			stackIt->push(childIt->m_data);
+			childIt = childIt->m_next;
+		}
+	}
+
+	return NULL;
+}
+
+template <class T>
+inline NTreeNode<T>::NTreeNode(T data)
+{
+	m_data = data;
+	m_children = NULL;
+}
+
+template <class T>
+inline NTreeNode<T>::~NTreeNode()
+{
+}

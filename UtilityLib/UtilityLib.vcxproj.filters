@@ -68,9 +68,6 @@
     <ClCompile Include="UnitTests_Stack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NTreeNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UnitTests_NTreeNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
