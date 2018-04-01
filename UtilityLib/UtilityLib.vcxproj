@@ -147,7 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="LinkedListNode.h" />
     <ClInclude Include="NTreeNode.h" />

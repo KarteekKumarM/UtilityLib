@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Globals.h"
+#include "Constants.h"
 
 template <class T>
 class LinkedListNode
