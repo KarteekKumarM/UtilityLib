@@ -39,6 +39,12 @@
     <ClInclude Include="UnitTests_Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NTreeNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitTests_NTreeNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UnitTests_Stack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NTreeNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitTests_NTreeNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
