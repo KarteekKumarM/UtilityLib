@@ -6,7 +6,12 @@ void UnitTests_StringUtility::RunBasicTests()
 {
 	printf("------ String Utility testing --------\n");
 
-	char javaThing[] = "Java is Great";
+	char javaThing[] = "Java is kinda Great";
+
+	this->m_result = UT_RESULT_SUCCESS;
+
+	if (StringUtility::indexOf(javaThing, "kinda") != 8)
+		this->m_result = UT_RESULT_FAIL;
 
 	printf(javaThing);
 
@@ -17,8 +22,6 @@ void UnitTests_StringUtility::RunBasicTests()
 	printf(javaThing);
 
 	printf("\n");
-
-	this->m_result = UT_RESULT_SUCCESS;
 }
 
 void UnitTests_StringUtility::run()

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "StringUtility.h"
-
+#include "Constants.h"
 
 unsigned int StringUtility::getLength(char * str)
 {
@@ -52,6 +52,32 @@ void StringUtility::reverseWordsInString(char * str, unsigned int length)
 	}
 
 	reverseString(str, length);
+}
+
+unsigned int StringUtility::indexOf(const char *str, const char *substr)
+{
+	unsigned int strItIndex = 0;
+	unsigned int subStrItIndex = 0;
+
+	while (str[strItIndex] != '\0')
+	{
+		if (str[strItIndex] == substr[subStrItIndex])
+		{
+			subStrItIndex++;
+			if (substr[subStrItIndex] == '\0')
+			{
+				strItIndex++;
+				return (strItIndex - subStrItIndex);
+			}
+		}
+		else
+		{
+			subStrItIndex = 0;
+		}
+
+		strItIndex++;
+	}
+	return MAX_UINT;
 }
 
 StringUtility::StringUtility()
